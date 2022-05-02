@@ -1,5 +1,8 @@
 package za.ac.cput.mp2.assignment02
 
+// Name: Waseem Dollie
+// Student no: 216040566
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,15 +23,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import za.ac.cput.mp2.assignment02.ui.theme.Assignment02Theme
+import za.ac.cput.mp2.assignment02.ui.theme.SetupNavGraph
 
 class MainActivity : ComponentActivity() {
+    private lateinit var  navController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Assignment02Theme {
-                GetScaffold()
-                AlertDialog()
+                navController = rememberNavController()
+                SetupNavGraph(navController = navController)
+
             }
         }
     }
@@ -87,20 +97,22 @@ fun AlertDialog() {
                 .width(150.dp)
                 .height(55.dp)
                 .background(Color(0xFFEEDC82)),
+
         )
         {
 
 //This is the code for the + image
             Icon(
                 imageVector = Icons.Default.AddCircle,
-                contentDescription = "", Modifier.size(30.dp)
+                contentDescription = "", Modifier.size(25.dp)
             )
+// Creating a space between the icon and the text of the button
             Spacer(
                 Modifier.size(ButtonDefaults.IconSpacing)
             )
             Text(
                 text = "Info",
-                fontSize = 30.sp,
+                fontSize = 19.sp,
             )
         }
     }
@@ -130,5 +142,48 @@ fun AlertDialog() {
                 }
             },
         )
+    }
+}
+
+@Composable
+//Using the navigation controller Parameter inside the button method
+fun StartJourneyButton(navController: NavController){
+    Column(
+        modifier = Modifier.fillMaxSize()
+
+            .padding(vertical = 200.dp),
+
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
+    )
+
+    {
+        Button(
+//Coding to select the screen that the page needs to navigate to
+            onClick = {navController.navigate(route=Screen.SecondActivity.route)},
+            Modifier
+                .width(150.dp)
+                .height(55.dp)
+                .background(Color(0xFFEEDC82)),
+
+        )
+
+        {
+            Icon(
+                imageVector = Icons.Filled.ThumbUp,
+                contentDescription = "", Modifier.size(25.dp)
+            )
+
+// Creating a space between the icon and the text of the button
+            Spacer(
+                Modifier.size(ButtonDefaults.IconSpacing)
+            )
+
+// Text of the button
+            Text(
+                text = "Start Journey",
+                fontSize = 16.5.sp,
+            )
+        }
     }
 }
