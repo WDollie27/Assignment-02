@@ -108,7 +108,7 @@ fun StudentNumber() {
 }
 
 @Composable
-fun ModuleButton(){
+fun ModuleButton(navController: NavController){
 //Creating a column so that the information and button can be in the center
     Column(
         modifier = Modifier
@@ -117,16 +117,15 @@ fun ModuleButton(){
             .padding(vertical = 120.dp)
             .padding(horizontal = 100.dp),
 
-
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
-
     )
 
 //Creating a button
     {
         Button(
-            onClick = {},
+//Coding to select the screen that the page needs to navigate to
+            onClick = {navController.navigate(route=Screen.ThirdActivity.route)},
             Modifier
                 .width(150.dp)
                 .height(55.dp)

@@ -32,9 +32,15 @@ fun SetupNavGraph(
             Course()
             Department()
             StudentNumber()
-            ModuleButton()
+            ModuleButton(navController = navController)
             BackButton(navController = navController)
-
+        }
+//Everything that is displayed on the ThirdActivity
+        composable(Screen.ThirdActivity.route)
+        {
+            Modules(navController = navController)
         }
     }}
+
+
 

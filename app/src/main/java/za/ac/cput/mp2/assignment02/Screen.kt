@@ -7,5 +7,7 @@ package za.ac.cput.mp2.assignment02
 sealed class Screen(val route: String) {
     object MainActivity: Screen(route = "main_screen")
     object SecondActivity: Screen(route = "second_screen")
-
+    object ThirdActivity: Screen(route = "third_screen")
 }
+
+
